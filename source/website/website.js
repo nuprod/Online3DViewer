@@ -239,6 +239,28 @@ export class Website
         window.addEventListener ('resize', () => {
 			this.layouter.Resize ();
 		});
+        const url = window.location.href;
+        try {
+            fetch(
+                `${url.split('/3d_view')[0]}/web/content/?model=ir.attachment&${
+                    url.split('?')[1]
+                }&download=true&filename=3D.step`,
+                { mode: 'no-cors' }
+            )
+                .then((response) => response.text())
+                .then((in_file) => {
+                    // console.log(in_file);
+                    const blob = new Blob([in_file], { type: 'text/plain' });
+                    const fileName = '3D.step';
+                    const file = new File([blob], fileName, {
+                        type: 'application/step',
+                        lastModified: new Date().getTime(),
+                    });
+                    this.LoadModelFromFileList([file]);
+                });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     HasLoadedModel ()
@@ -555,7 +577,7 @@ export class Website
 
     UpdateEnvironmentMap ()
     {
-        let envMapPath = 'assets/envmaps/' + this.settings.environmentMapName + '/';
+        let envMapPath = this.parameters.websiteLocation + 'assets/envmaps/' + this.settings.environmentMapName + '/';
         let envMapTextures = [
             envMapPath + 'posx.jpg',
             envMapPath + 'negx.jpg',

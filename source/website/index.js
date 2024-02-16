@@ -43,7 +43,7 @@ export function RegisterToolbarPlugin (plugin)
     RegisterPlugin (PluginType.Toolbar, plugin);
 }
 
-export function StartWebsite (externalLibLocation)
+export function StartWebsite (externalLibLocation, websiteLocation='')
 {
     SetExternalLibLocation (externalLibLocation);
     window.addEventListener ('load', () => {
@@ -62,7 +62,8 @@ export function StartWebsite (externalLibLocation)
             sidebarDiv : document.getElementById ('main_sidebar'),
             sidebarSplitterDiv : document.getElementById ('main_sidebar_splitter'),
             viewerDiv : document.getElementById ('main_viewer'),
-            fileInput : document.getElementById ('open_file')
+            fileInput : document.getElementById ('open_file'),
+            websiteLocation: websiteLocation,
         });
         website.Load ();
     });
