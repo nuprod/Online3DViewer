@@ -187,7 +187,7 @@ export class Website
     constructor (parameters)
     {
         this.parameters = parameters;
-        this.settings = new Settings (Theme.Light);
+        this.settings = new Settings (Theme.Dark);
         this.cameraSettings = new CameraSettings ();
         this.viewer = new Viewer ();
         this.measureTool = new MeasureTool (this.viewer, this.settings);

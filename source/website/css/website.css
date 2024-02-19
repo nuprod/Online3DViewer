@@ -31,10 +31,6 @@ div.title div.logo_text {
 	float: left;
 }
 
-div.title div.title_right {
-	float: right;
-}
-
 div.toolbar {
 	background: var(--ov_toolbar_background_color);
 }
@@ -330,13 +326,27 @@ div.title svg.logo_image {
 	float: left;
 }
 
+div.title svg.logo_link {
+	width: 25px;
+	height: 25px;
+	margin: 0 10px 0 5px;
+}
+
+div.title div.title_right {
+	float: right;
+	display: flex;
+}
+
 div.title_right a {
 	color: var(--ov_foreground_color);
 	display: flex;
 	align-items: center;
 	text-decoration: none;
-	color: #e70178;
 	font-weight: bolder;
+}
+.title_right_red {
+	color: #e70178;
+	margin-left: 5px;
 }
 
 div[alt~="Files"] {
