@@ -682,29 +682,29 @@ export class Website
         let navigationModeIndex = (this.cameraSettings.navigationMode === NavigationMode.FixedUpVector ? 0 : 1);
         let projectionModeIndex = (this.cameraSettings.projectionMode === ProjectionMode.Perspective ? 0 : 1);
 
-        AddButton (this.toolbar, 'open', 'Open from your device', [], () => {
-            this.OpenFileBrowserDialog ();
-        });
-        AddButton (this.toolbar, 'open_url', 'Open from url', [], () => {
-            ShowOpenUrlDialog ((urls) => {
-                if (urls.length > 0) {
-                    this.hashHandler.SetModelFilesToHash (urls);
-                }
-            });
-        });
-        AddSeparator (this.toolbar, ['only_on_model']);
+        // AddButton (this.toolbar, 'open', 'Open from your device', [], () => {
+        //     this.OpenFileBrowserDialog ();
+        // });
+        // AddButton (this.toolbar, 'open_url', 'Open from url', [], () => {
+        //     ShowOpenUrlDialog ((urls) => {
+        //         if (urls.length > 0) {
+        //             this.hashHandler.SetModelFilesToHash (urls);
+        //         }
+        //     });
+        // });
+        // AddSeparator (this.toolbar, ['only_on_model']);
         AddButton (this.toolbar, 'fit', 'Fit model to window', ['only_on_model'], () => {
             this.FitModelToWindow (false);
         });
-        AddButton (this.toolbar, 'up_y', 'Set Y axis as up vector', ['only_on_model'], () => {
-            this.viewer.SetUpVector (Direction.Y, true);
-        });
-        AddButton (this.toolbar, 'up_z', 'Set Z axis as up vector', ['only_on_model'], () => {
-            this.viewer.SetUpVector (Direction.Z, true);
-        });
-        AddButton (this.toolbar, 'flip', 'Flip up vector', ['only_on_model'], () => {
-            this.viewer.FlipUpVector ();
-        });
+        // AddButton (this.toolbar, 'up_y', 'Set Y axis as up vector', ['only_on_model'], () => {
+        //     this.viewer.SetUpVector (Direction.Y, true);
+        // });
+        // AddButton (this.toolbar, 'up_z', 'Set Z axis as up vector', ['only_on_model'], () => {
+        //     this.viewer.SetUpVector (Direction.Z, true);
+        // });
+        // AddButton (this.toolbar, 'flip', 'Flip up vector', ['only_on_model'], () => {
+        //     this.viewer.FlipUpVector ();
+        // });
         AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
         AddRadioButton (this.toolbar, ['fix_up_on', 'fix_up_off'], ['Fixed up vector', 'Free orbit'], navigationModeIndex, ['only_full_width', 'only_on_model'], (buttonIndex) => {
             if (buttonIndex === 0) {
@@ -716,17 +716,20 @@ export class Website
             this.viewer.SetNavigationMode (this.cameraSettings.navigationMode);
         });
         AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
-        AddRadioButton (this.toolbar, ['camera_perspective', 'camera_orthographic'], ['Perspective camera', 'Orthographic camera'], projectionModeIndex, ['only_full_width', 'only_on_model'], (buttonIndex) => {
-            if (buttonIndex === 0) {
-                this.cameraSettings.projectionMode = ProjectionMode.Perspective;
-            } else if (buttonIndex === 1) {
-                this.cameraSettings.projectionMode = ProjectionMode.Orthographic;
-            }
-            this.cameraSettings.SaveToCookies ();
-            this.viewer.SetProjectionMode (this.cameraSettings.projectionMode);
-            this.sidebar.UpdateControlsVisibility ();
-        });
-        AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
+        // AddButton (this.toolbar, 'camera_perspective', 'Perspective camera', ['only_on_model'], () => {
+        //     this.FitModelToWindow (false);
+        // });
+        // AddRadioButton (this.toolbar, ['camera_perspective', 'camera_orthographic'], ['Perspective camera', 'Orthographic camera'], projectionModeIndex, ['only_full_width', 'only_on_model'], (buttonIndex) => {
+        //     if (buttonIndex === 0) {
+        //         this.cameraSettings.projectionMode = ProjectionMode.Perspective;
+        //     } else if (buttonIndex === 1) {
+        //         this.cameraSettings.projectionMode = ProjectionMode.Orthographic;
+        //     }
+        //     this.cameraSettings.SaveToCookies ();
+        //     this.viewer.SetProjectionMode (this.cameraSettings.projectionMode);
+        //     this.sidebar.UpdateControlsVisibility ();
+        // });
+        // AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
         let measureToolButton = AddPushButton (this.toolbar, 'measure', 'Measure', ['only_full_width', 'only_on_model'], (isSelected) => {
             HandleEvent ('measure_tool_activated', isSelected ? 'on' : 'off');
             this.navigator.SetSelection (null);
@@ -734,22 +737,22 @@ export class Website
         });
         this.measureTool.SetButton (measureToolButton);
         AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
-        AddButton (this.toolbar, 'download', 'Download', ['only_full_width', 'only_on_model'], () => {
-            HandleEvent ('model_downloaded', '');
-            let importer = this.modelLoaderUI.GetImporter ();
-            DownloadModel (importer);
-        });
-        AddButton (this.toolbar, 'export', 'Export', ['only_full_width', 'only_on_model'], () => {
-            ShowExportDialog (this.model, this.viewer, {
-                isMeshVisible : (meshInstanceId) => {
-                    return this.navigator.IsMeshVisible (meshInstanceId);
-                }
-            });
-        });
-        AddButton (this.toolbar, 'share', 'Share', ['only_full_width', 'only_on_model'], () => {
-            ShowSharingDialog (importer.GetFileList (), this.settings, this.viewer);
-        });
-        AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
+        // AddButton (this.toolbar, 'download', 'Download', ['only_full_width', 'only_on_model'], () => {
+        //     HandleEvent ('model_downloaded', '');
+        //     let importer = this.modelLoaderUI.GetImporter ();
+        //     DownloadModel (importer);
+        // });
+        // AddButton (this.toolbar, 'export', 'Export', ['only_full_width', 'only_on_model'], () => {
+        //     ShowExportDialog (this.model, this.viewer, {
+        //         isMeshVisible : (meshInstanceId) => {
+        //             return this.navigator.IsMeshVisible (meshInstanceId);
+        //         }
+        //     });
+        // });
+        // AddButton (this.toolbar, 'share', 'Share', ['only_full_width', 'only_on_model'], () => {
+        //     ShowSharingDialog (importer.GetFileList (), this.settings, this.viewer);
+        // });
+        // AddSeparator (this.toolbar, ['only_full_width', 'only_on_model']);
         AddButton (this.toolbar, 'snapshot', 'Create snapshot', ['only_full_width', 'only_on_model'], () => {
             ShowSnapshotDialog (this.viewer);
         });
